@@ -2041,4 +2041,68 @@ function ProfilePage() {
     </div>
   );
 }
+function Namrino() {
+  const route = useHashRoute();
 
+  let content;
+
+  switch (route.name) {
+    case "market":
+      content = <MarketPage />;
+      break;
+
+    case "login":
+      content = <LoginPage />;
+      break;
+
+    case "register":
+      content = <RegisterPage />;
+      break;
+
+    case "dashboard":
+      content = (
+        <RequireAuth>
+          <DashboardPage />
+        </RequireAuth>
+      );
+      break;
+
+    case "exam-history":
+      content = (
+        <RequireAuth>
+          <ExamHistoryPage />
+        </RequireAuth>
+      );
+      break;
+
+    case "profile":
+      content = (
+        <RequireAuth>
+          <ProfilePage />
+        </RequireAuth>
+      );
+      break;
+
+    default:
+      content = <HomePage />;
+  }
+
+  return (
+    <PlanProvider>
+      <AuthProvider>
+        <ToastProvider>
+          <div className="min-h-screen overflow-x-hidden bg-namrino-navy text-slate-100">
+            <AnimatedBackground minimal={route.name !== "home"} />
+            <div className="relative z-10">
+              <Header />
+              <main>{content}</main>
+              <Footer />
+            </div>
+          </div>
+        </ToastProvider>
+      </AuthProvider>
+    </PlanProvider>
+  );
+}
+
+export default Namrino;
