@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.test-tailwind {
+  @apply text-white bg-purple-600 p-4 rounded-xl;
+}
